@@ -19,6 +19,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// -------[--Rutas cobrador--]------------
+Route::get('/cobrador',     'cobrador\CobradorController@index')->middleware('auth');;
+
+
+// -------[--Rutas cobrador--]------------
+Route::get('/suscriptor', 'suscriptor\SuscriptorController@index')->middleware('auth');;
+
+
 Route::get('/about', function () {
     return view('about');
 });
+
+Route::post('/validar','EntradaController@validar');
