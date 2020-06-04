@@ -20,11 +20,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // -------[--Rutas cobrador--]------------
-Route::get('/cobrador',     'cobrador\CobradorController@index')->middleware('auth');;
+//Route::get('/cobrador',     'cobrador\CobradorController@index')->middleware('auth');;
+  Route::resource('/cobrador', 'cobrador\CobradorController');
+  Route::resource('servicios', 'cobrador\serviciosController');
+//Route::post('servicios','cobrador\serviciosController@store');
 
 
-// -------[--Rutas cobrador--]------------
-Route::get('/suscriptor', 'suscriptor\SuscriptorController@index')->middleware('auth');;
+// -------[--Rutas suscriptor--]------------
+//Route::get('/suscriptor', 'suscriptor\SuscriptorController@index')->middleware('auth');;
+Route::resource('/suscriptor', 'suscriptor\SuscriptorController');
 
 
 Route::get('/about', function () {

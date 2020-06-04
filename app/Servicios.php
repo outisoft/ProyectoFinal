@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cobrador extends Model
+class Servicios extends Model
 {
     public function user()
     {
