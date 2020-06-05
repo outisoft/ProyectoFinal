@@ -66,5 +66,13 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('suscriptor'),
             'rol' => 'suscriptor',
         ]);
+        DB::table('users')->insert([
+            'name' => 'Andy',
+            'last_name' => 'Roblero',
+            'rfc' => 'ROLA9701073MU',
+            'email' => 'andy@gmail.com',
+            'password' => bcrypt('suscriptor'),
+            'rol' => 'suscriptor',
+        ]);
     }
 }

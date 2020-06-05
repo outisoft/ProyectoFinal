@@ -101,12 +101,13 @@
     <tr>
       <td>{{ $servicios['nombre']}}</td>
       <td>{!! $servicios['descripcion'] !!}</td> <!-- los !! sirven para evitar ejecutar codigo html(cuidado cuando usamos esto)-->
-      <td>{{ $servicios['precio']}}</td>
+      <td>${{ $servicios['precio']}}</td>
       <td>
         <a href="/servicios/{{ $servicios['id'] }}/edit"><img src="{{ asset('iconos/Edit.ico') }}" width="30" height="30"></a>
         <a href="#"  data-toggle="modal" data-target="#deleteModal" data-postid="{{$servicios['id']}}"><img src="{{ asset('iconos/Cancel.ico') }}" width="30" height="30"></a>
       </td>
     </tr>
+
   @endforeach
   </tbody>
 

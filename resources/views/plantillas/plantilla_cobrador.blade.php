@@ -84,7 +84,7 @@
                     </a>
                   </li>
                   <li class="nav-item px-1 mt-2 mb-1 text-muted">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/versuscriptor">
                       <span data-feather="shopping-cart"></span>
                       <p style="color:#ffffff"><img src="{{ asset('iconos/UserGroup_96px.png') }}" width="40" height="40">Suscriptores</p>
                     </a>

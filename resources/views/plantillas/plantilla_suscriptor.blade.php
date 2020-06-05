@@ -84,7 +84,7 @@
                     </a>
                   </li>
                   <li class="nav-item px-0 mt-2 mb-1 text-muted dropdown">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/verservicios">
                       <span data-feather="users"></span>
                       <p style="color:#ffffff"><img src="{{ asset('iconos/ServiceBell_96px.png') }}" width="30" height="30">Servicios</p>
                     </a>
@@ -99,15 +99,7 @@
                 </h6>
               </div>
             </nav>
-
-<!--
-
-<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-    {{ Auth::user()->name }} <span class="caret"></span>
-</a>
-
--->
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">
                   {{ Auth::user()->name }} {{ Auth::user()->last_name }} [{{ Auth::user()->email }}]<span class="caret"></span>

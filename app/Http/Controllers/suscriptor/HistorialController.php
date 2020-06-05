@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\suscriptor;
 
 use App\Http\Controllers\Controller;
-use App\suscriptor;
 use Illuminate\Http\Request;
+use App\suscriptor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class SuscriptorController extends Controller
+class HistorialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,7 @@ class SuscriptorController extends Controller
      */
     public function index()
     {
-      $suscriptor = DB::table('users')
-      ->where('rol', 'suscriptor')
-      ->get();
-
-      return view('suscriptor.suscriptor', ['suscriptor'=>$suscriptor]);
+        return view('cobrador.suscriptor.historial');
     }
 
     /**
@@ -48,36 +44,41 @@ class SuscriptorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\suscriptor  $suscriptor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(suscriptor $suscriptor)
+    public function show($id)
     {
+        $suscriptor = DB::table('users')
+        ->where('id', $id)
+        ->get();
 
+        return view('cobrador.suscriptor.historial', ['suscriptor'=>$suscriptor]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\suscriptor  $suscriptor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-      $id = DB::table('users')
+      $historial = DB::table('users')
       ->where('id', $id)
-      ->find($id);
-      return view('cobrador.suscriptor.historial', ['suscriptor'=>$id]);
+      ->get();
+
+      return view('cobrador.suscriptor.historial', ['historial'=>$historial]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\suscriptor  $suscriptor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, suscriptor $suscriptor)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -85,16 +86,11 @@ class SuscriptorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\suscriptor  $suscriptor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(suscriptor $suscriptor)
+    public function destroy($id)
     {
         //
-    }
-
-    public function historial()
-    {
-
     }
 }

@@ -23,12 +23,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/cobrador',     'cobrador\CobradorController@index')->middleware('auth');;
   Route::resource('/cobrador', 'cobrador\CobradorController');
   Route::resource('servicios', 'cobrador\serviciosController');
-//Route::post('servicios','cobrador\serviciosController@store');
+  Route::resource('/versuscriptor', 'cobrador\SuscriptorController');
 
 
 // -------[--Rutas suscriptor--]------------
 //Route::get('/suscriptor', 'suscriptor\SuscriptorController@index')->middleware('auth');;
 Route::resource('/suscriptor', 'suscriptor\SuscriptorController');
+Route::resource('/historial', 'suscriptor\HistorialController');
+Route::resource('/verservicios', 'suscriptor\ServiciosController');
 
 
 Route::get('/about', function () {
