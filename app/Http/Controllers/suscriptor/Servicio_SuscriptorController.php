@@ -1,30 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\cobrador;
+namespace App\Http\Controllers\suscriptor;
 
-use App\cobrador;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CobradorController extends Controller
+use App\Servicios;
+
+class Servicio_SuscriptorController extends Controller
 {
-    function cobrador()
-    {
-      return view('cobrador.cobrador');
-    }
-    
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth'); //sin este middleware el controlador se ejecutaria
-        // aún cuando no exista sesion (si no ahy alguien activo)
-    }
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +18,7 @@ class CobradorController extends Controller
      */
     public function index()
     {
-        return view('cobrador.cobrador');
+        return view('suscriptor.servicios.index');
     }
 
     /**
@@ -42,7 +28,7 @@ class CobradorController extends Controller
      */
     public function create()
     {
-        //
+        return view('suscriptor.servicios.index');
     }
 
     /**
@@ -51,18 +37,36 @@ class CobradorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(Request $id)
     {
-        //
+
+      $user = auth()->user();
+      $servicios_suscriptor = Servicios::find($id);
+
+      if ($servicios_suscriptor != null)
+      {
+        //dd($servicios_suscriptor);
+        /*$servicios_suscriptor->servicios_id = $servicios_suscriptor->id;*/
+        //$servicios_suscriptor->suscriptor_id = $user->id;
+
+        //$servicios_suscriptor->save();
+
+        return redirect('/verservicios')->with('success','El servicio ha sido cargado a su cuenta');
+      }
+      else
+      {
+        return redirect('/verservicios')->with('error','El servicio no ha sido encontrado');
+      }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\cobrador  $cobrador
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(cobrador $cobrador)
+    public function show($id)
     {
 
     }
@@ -70,34 +74,34 @@ class CobradorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\cobrador  $cobrador
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(cobrador $cobrador)
+    public function edit($id)
     {
-
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\cobrador  $cobrador
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cobrador $cobrador)
+    public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\cobrador  $cobrador
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cobrador $cobrador)
+    public function destroy($id)
     {
-        //
+
     }
 }

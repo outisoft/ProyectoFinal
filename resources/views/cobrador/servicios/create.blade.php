@@ -28,6 +28,11 @@
     </div>
 
     <div class="form-group">
+      <label for="MontoMora">Monto Mora:</label>
+      <input type="text" name="MontoMora" class="form-control" id="MontoMora" placeholder="Monto mora..." value="{{ old('MontoMora') }}">
+    </div>
+
+    <div class="form-group">
       <label for="descripcion">Descripcion:</label>
       <textarea name="descripcion" id="descripcion">{{ old('descripcion') }}</textarea>
     </div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\suscriptor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use DB;
 class HistorialController extends Controller
 {
     /**
@@ -17,7 +17,17 @@ class HistorialController extends Controller
      */
     public function index()
     {
-        return view('cobrador.suscriptor.historial');
+      $informacion = DB::table('servicios_suscriptor')
+      ->join('users', 'users.id', '=', 'servicios_suscriptor.suscriptor_id')
+      ->select('servicios.nombre', 'servicios.precio', 'user.name as nombre')
+      ->get();
+
+      /*$noticias = DB::table('noticias')
+      ->join('users', 'users.id_user', '=', 'noticias.id_user')
+      ->select('noticias.nombre', 'noticias.contenido', 'user.name as autorNoticia')
+      ->get();*/
+      dd($informacion);
+        //return view('cobrador.suscriptor.historial');
     }
 
     /**
@@ -63,7 +73,7 @@ class HistorialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {      
       $historial = DB::table('users')
       ->where('id', $id)
       ->get();

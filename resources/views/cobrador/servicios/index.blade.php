@@ -1,63 +1,6 @@
 @extends('plantillas.plantilla_cobrador')
 @section('content')
-<!--
-<div class="row py-lg-2">
-  <div class="col-md-6">
-    <h1>Servicios</h1>
-  </div>
-  <div class="col-md-6">
-    <a href="/servicios/create" class="btn btn-primary btn-lg float-md-right" role="button" aria-pressed="true">Nuevo Servicio</a>
-  </div>
-</div>
--->
-<!-- DataTables Example -->
-<!--<div class="card mb-3">
-  <div class="card-header">
-    <i class="fas fa-table"></i>
-    Servicio</div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Servicios</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Descripcion</th>
-            <th>Precio</th>
-            <th>Activo</th>
-            <th>Tool</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th>Servicios</th>
-            <th>Inicio</th>
-            <th>HFin</th>
-            <th>Descripcion</th>
-            <th>Precio</th>
-            <th>Activo</th>
-            <th>Tool</th>
-          </tr>
-        </tfoot>
-        <tbody>
-          <tr>
-            td>Basico</td>
-            <td>Lunes, Miercoles y Viernes</td>
-            <td>2 horas por dia</td>
-            <td>4 equipos</td>
-            <td>$300</td>
-            <td>
-              <a href="/serviciosUsuario/001/edit"><i class="fa fa-edit"></i></a>
-              <a href="#"  data-toggle="modal" data-target="#deleteModal" data-postid="001"><i class="fas fa-trash-alt"></i></a>
-            </td-->
-          <!--/tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-</div>-->
+
 
 
 @if (\Session::has('success'))
@@ -87,33 +30,40 @@
 </div><br />
 @endif
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Servicio</th>
-      <th>Descripcion</th>
-      <th>Precio</th>
-      <th>Tools</th>
-    </tr>
-  </thead>
+
+<div class="row py-lg-2">
+  <div class="col-md-6 h3 mb-1 text-gray-800">
+    <h1>Servicios:</h1>
+  </div>
+  <div class="col-md-6">
+    <a href="/servicios/create" class="btn btn-success btn-icon-split float-md-right">
+      <span class="icon text-white-50">
+        <i class="fas fa-check">+</i>
+      </span>
+      <span class="text">Nuevo</span>
+    </a>
+  </div>
+</div>
+
+
+<div class="row">
   @foreach ($servicio as $servicios)
-  <tbody>
-    <tr>
-      <td>{{ $servicios['nombre']}}</td>
-      <td>{!! $servicios['descripcion'] !!}</td> <!-- los !! sirven para evitar ejecutar codigo html(cuidado cuando usamos esto)-->
-      <td>${{ $servicios['precio']}}</td>
-      <td>
+  <div class="col-lg-6">
+    <div class="card-body shadow mb-4 card mb-4 py-3 border-bottom-primary">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">{{ $servicios['nombre']}}</h6>
+      </div>
+      <div class="card-body"> Descripcion: {!! $servicios['descripcion'] !!}
+        <p class="mb-4">Precio: ${{ $servicios['precio']}}</p>
         <a href="/servicios/{{ $servicios['id'] }}/edit"><img src="{{ asset('iconos/Edit.ico') }}" width="30" height="30"></a>
         <a href="#"  data-toggle="modal" data-target="#deleteModal" data-postid="{{$servicios['id']}}"><img src="{{ asset('iconos/Cancel.ico') }}" width="30" height="30"></a>
-      </td>
-    </tr>
-
+      </div>
+    </div>
+  </div>
   @endforeach
-  </tbody>
+</div>
 
-</table>
-<a href="/servicios/create" class="btn btn-success float-md-right" role="button" aria-pressed="true">AGREGAR</a>
-
+<!--a href="/servicios/create" class="btn btn-success float-md-right" role="button" aria-pressed="true">AGREGAR</a-->
 <!-- delete Modal-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

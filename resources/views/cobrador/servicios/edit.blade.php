@@ -29,6 +29,11 @@
     </div>
 
     <div class="form-group">
+      <label for="MontoMora">Monto Mora:</label>
+      <input type="text" name="MontoMora" class="form-control" id="MontoMora" placeholder="Monto mora del servicio..." value="{{ $servicio->MontoMora }}">
+    </div>
+
+    <div class="form-group">
       <label for="descripcion">Descripcion:</label>
       <textarea name="descripcion" id="descripcion">{{ $servicio->descripcion }}</textarea>
     </div>

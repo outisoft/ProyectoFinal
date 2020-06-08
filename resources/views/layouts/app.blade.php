@@ -16,11 +16,20 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!--jQuery-Axas-->
+    <script src="/node_modules/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!--CKEditor Plugin-->
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
-<body style="background-color: #E74C3C">
-    <div id="app" style="background-color: #E74C3C">
+<body style="background-color: #FFFFFF">
+    <div id="app" style="background-color: #FFFFFF">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -80,4 +89,5 @@
         </main>
     </div>
 </body>
+@yield('codigo')
 </html>

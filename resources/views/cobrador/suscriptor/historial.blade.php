@@ -17,4 +17,5 @@
 <h5 class="col-md-6">fecha de Registro:  </h5>
 <label for="Correo">{{ $suscriptor->created_at}}</label>
 
+
 @endsection

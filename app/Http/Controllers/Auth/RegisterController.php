@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -72,6 +74,24 @@ class RegisterController extends Controller
             'rfc' => $data['rfc'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'rol' => 'suscriptor',
         ]);
+    }
+
+    function check(Request $request)
+    {
+      if($request->get('email'))
+      {
+        $email = $request->get('email');
+        $data = DB::table("users") ->where('email', $email) ->count();
+        if($data > 0)
+        {
+          echo 'not_unique';
+        }
+        else
+        {
+          echo 'unique';
+        }
+      }
     }
 }

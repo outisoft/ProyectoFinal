@@ -1,5 +1,5 @@
 <?php
-
+use App\Servicios;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // -------[--Rutas cobrador--]------------
 //Route::get('/cobrador',     'cobrador\CobradorController@index')->middleware('auth');;
   Route::resource('/cobrador', 'cobrador\CobradorController');
-  Route::resource('servicios', 'cobrador\serviciosController');
+  Route::resource('/servicios', 'cobrador\serviciosController');
   Route::resource('/versuscriptor', 'cobrador\SuscriptorController');
 
 
@@ -31,10 +31,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/suscriptor', 'suscriptor\SuscriptorController');
 Route::resource('/historial', 'suscriptor\HistorialController');
 Route::resource('/verservicios', 'suscriptor\ServiciosController');
+Route::resource('/Servicio_Suscriptor', 'suscriptor\Servicio_SuscriptorController');
 
 
+//-----------[--Ritas de errores--]----------------------------------------------
+Route::resource('/error-404', 'ErrorController');
+
+
+
+//-------------------[--About--]-------------------------
 Route::get('/about', function () {
-    return view('about');
-});
 
+  $servicio = Servicios::orderBy('id', 'desc')
+              ->get();
+
+    return view('about',['servicio' => $servicio]);
+});
+Route::resource('/chat', 'chatController');
+Route::post('/register/check', 'Auth\RegisterController@check')->name('register.check');
 Route::post('/validar','EntradaController@validar');

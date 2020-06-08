@@ -12,7 +12,7 @@ class Suscriptor extends Model
   }
   public function servicios()
   {
-      return
-      $this->belongsToMany('App\Servicios,'servicios_suscriptor','suscriptor_id', 'servicios_id');
+    return $this->belongsTo('App\Servicios,'servicios_suscriptor','suscriptor_id', 'servicios_id');
+      //return $this->belongsToMany('App\Servicios,'servicios_suscriptor','suscriptor_id', 'servicios_id');
   }
 }

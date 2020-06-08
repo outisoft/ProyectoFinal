@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Servicios;
+use App\User;
 
 class ServiciosController extends Controller
 {
@@ -31,7 +32,7 @@ class ServiciosController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -40,9 +41,28 @@ class ServiciosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $id)
     {
-        //
+      $user = auth()->user();
+      $servicios_suscriptor = Servicios::find($id);
+
+      $servicio = DB::table('servicios');
+      //dd($servicios_suscriptor);
+
+      if ($servicios_suscriptor != null)
+      {
+        //dd($servicio);
+      //  $servicios_suscriptor->servicios_id = $servicios_suscriptor;
+      //  $servicios_suscriptor->suscriptor_id = $user->id;
+
+        //$servicios_suscriptor->avg();
+
+        return redirect('/verservicios')->with('success','El servicio ha sido cargado a su cuenta');
+      }
+      else
+      {
+        return redirect('/verservicios')->with('error','El servicio no ha sido encontrado');
+      }
     }
 
     /**
@@ -53,7 +73,7 @@ class ServiciosController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -87,6 +107,6 @@ class ServiciosController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }

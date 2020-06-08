@@ -7,10 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use App\Servicios;
 
 class ServiciosController extends Controller
 {
+  use SoftDeletes;
+
     /**
      * Display a listing of the resource.
      *
@@ -46,6 +51,7 @@ class ServiciosController extends Controller
       $data =request()->validate([
         'nombre' => 'required',
         'precio' => 'required',
+        'MontoMora'=>'required',
         'descripcion' => 'required',
       ]);
 
@@ -55,6 +61,7 @@ class ServiciosController extends Controller
 
         $servicios->nombre = request('nombre');
         $servicios->precio = request('precio');
+        $servicios->MontoMora= request('MontoMora');
         $servicios->descripcion = request('descripcion');
         $servicios->activo = $activo;
         $servicios->cobrador_id = $user->id;

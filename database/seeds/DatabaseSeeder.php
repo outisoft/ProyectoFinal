@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         // php artisan db:seed <------poblar base de datos
         $this->PoblarUsuarios();
+        $this->PoblarServicio();
     }
     public function PoblarUsuarios()
     {
@@ -74,5 +75,16 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('suscriptor'),
             'rol' => 'suscriptor',
         ]);
+    }
+    public function PoblarServicio()
+    {
+      DB::table('servicios')->insert([
+          'nombre' => 'Basico',
+          'descripcion' => 'Servicio basico',
+          'precio' => 300,
+          'MontoMora' => 50,
+          'activo' => 1,
+          'cobrador_id' => 1,
+      ]);
     }
 }

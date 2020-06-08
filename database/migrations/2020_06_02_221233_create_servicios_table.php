@@ -18,16 +18,18 @@ class CreateServiciosTable extends Migration
             $table->string('nombre', 45)->nullable();
             $table->string('descripcion', 100)->nullable();
             $table->integer('precio')->nullable();
+            $table->integer('MontoMora')->nullable();
             $table->boolean('activo')->nullable()->default('0');
             $table->unsignedBigInteger('cobrador_id')->unsigned()->nullable()->default(null);
             $table->timestamps();
-            
+
             $table->index(["cobrador_id"], 'fk_servicios_users1_idx');
 
             $table->foreign('cobrador_id', 'fk_servicios_users1_idx')
                 ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+            $table->softDeletes();
         });
     }
 

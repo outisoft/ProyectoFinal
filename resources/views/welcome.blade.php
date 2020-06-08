@@ -84,7 +84,9 @@
                 <div class="title m-b-md">
                     Sistema de Cobros
                 </div>
+                <img src="{{ asset('imagenes/equipo-6.png') }}" width="580" height="350">
             </div>
+
         </div>
     </body>
 </html>

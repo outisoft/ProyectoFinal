@@ -5,6 +5,7 @@ namespace App\Http\Controllers\cobrador;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\suscriptor;
+use App\servicio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +18,12 @@ class SuscriptorController extends Controller
      */
     public function index()
     {
+      $servicio = DB::table('servicios_suscriptor')
+      ->get();
       $suscriptor = DB::table('users')
       ->where('rol', 'suscriptor')
       ->get();
-      return view('cobrador.suscriptor.index', ['suscriptor'=>$suscriptor]);
+      return view('cobrador.suscriptor.index', ['suscriptor'=>$suscriptor], ['serviciover'=>$servicio]);
     }
 
     /**
@@ -52,7 +55,11 @@ class SuscriptorController extends Controller
      */
     public function show($id)
     {
-        //
+      $suscriptor = DB::table('users')
+      ->where('id', $id)
+      ->find($id);
+      dd($id);
+      return view('cobrador.suscriptor.historial', ['suscriptor'=>$suscriptor]);
     }
 
     /**
@@ -63,10 +70,24 @@ class SuscriptorController extends Controller
      */
     public function edit($id)
     {
-      $id = DB::table('users')
+      /*$informacion = DB::table('servicios_suscriptor')
+      ->join('users', 'users.id', '=', 'servicios_suscriptor.suscriptor_id')
+      ->join('servicios','servicios.id', '=', 'servicios_suscriptor.servicios_id')
+      ->select('servicios.nombre as servicio', 'servicios.descripcion', 'servicios.precio', 'users.name as nombre', 'users.last_name', 'users.rfc','users.email')
+      ->get();*/
+      //dd($informacion);
+
+      $suscriptor = DB::table('users')
       ->where('id', $id)
       ->find($id);
-      return view('cobrador.suscriptor.historial', ['suscriptor'=>$id]);
+
+
+
+      //$servicio = DB::table('servicios_suscriptor')
+      //->where('suscriptor_id', $id->id)
+      //->get();
+      return view('cobrador.suscriptor.historial', ['suscriptor'=>$suscriptor]);
+      /*return view('cobrador.suscriptor.historial', ['suscriptor'=>$informacion]);*/
     }
 
     /**
