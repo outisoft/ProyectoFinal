@@ -15,11 +15,13 @@ class chatController extends Controller
   }
   public function store(Request $request)
   {
-    Message::create({
-      'sender_id'=>auth()->id(),
-      'recipient_id'=> $request->recipient_id,
-      'body'=>$request->body,
-    });
-    return back()->->with('flash', 'Mensaje enviado');
+    $user = auth()->user();
+    $mensaje = new Message();
+    $mensaje->body = $request->body;
+    $mensaje->sender_id = $user->id;
+    $mensaje->recipient_id = $request->recipient_id;
+    $mensaje->save();
+
+    return back()->with('flash', 'Mensaje enviado');
   }
 }

@@ -79,6 +79,13 @@
                   <p style="color:#text-gray-400"><img src="{{ asset('iconos/ServiceBell_96px.png') }}" width="30" height="30">Servicios</p>
                 </a>
               </li>
+              <div class="topbar-divider d-none d-sm-block"></div>
+              <li class="nav-item px-1 mt-2 mb-1 text-muted">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+                  <p style="color:#text-gray-400"><img src="{{ asset('iconos/Chat_96px.png') }}" width="30" height="30">Mensajes</p>
+                </a>
+              </li>
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
