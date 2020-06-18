@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,8 +14,13 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         // php artisan db:seed <------poblar base de datos
-        $this->PoblarUsuarios();
-        $this->PoblarServicio();
+        #$this->PoblarUsuarios();
+        #$this->PoblarServicio();
+        $this->call(PoblarUsuarios::class);
+        $this->call(PoblarServicio::class);
+        $this->call(PoblarSuscripcion::class);
+        $this->call(PoblarServicioSuscriptor::class);
+        $this->call(PoblarMensages::class);
     }
     public function PoblarUsuarios()
     {

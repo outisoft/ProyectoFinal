@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
   Route::resource('/cobrador', 'cobrador\CobradorController');
   Route::resource('/servicios', 'cobrador\serviciosController');
   Route::resource('/versuscriptor', 'cobrador\SuscriptorController');
+  Route::get('/buscar', 'cobrador\SuscriptorController@action')->name('buscar.action');
 
 
 // -------[--Rutas suscriptor--]------------

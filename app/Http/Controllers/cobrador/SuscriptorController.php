@@ -25,6 +25,57 @@ class SuscriptorController extends Controller
       ->get();
       return view('cobrador.suscriptor.index', ['suscriptor'=>$suscriptor], ['serviciover'=>$servicio]);
     }
+    function action(Request $request)
+    {
+      if($request->ajax())
+      {
+        $output = '';
+        $query = $request->get('query');
+        if($query != '')
+        {
+          $data = DB::table('users')
+          ->where('name', 'like', '%'.$query.'%')
+          ->orWhere('last_name', 'like', '%'.$query.'%')
+          ->orWhere('rfc', 'like', '%'.$query.'%')
+          ->orWhere('email', 'like', '%'.$query.'%')
+          ->orderBy('id', 'desc')
+          ->get();
+        }
+        else
+        {
+          $data = DB::table('users')
+          ->where('rol', 'suscriptor')
+          ->orderBy('id', 'desc')
+          ->get();
+        }
+        $total_row = $data->count();
+        if($total_row > 0)
+        {
+          foreach($data as $row)
+          {
+            $output .= '
+            <tr>
+            <td>'.$row->name.'</td>
+            <td>'.$row->last_name.'</td>
+            <td>'.$row->rfc.'</td>
+            <td>'.$row->email.'</td>
+            </tr>';
+          }
+        }
+        else
+        {
+          $output = '
+          <tr>
+            <td align="center" colspan="5">Usuario no encontrado</td>
+          </tr>';
+        }
+        $data = array(
+          'table_data'  => $output,
+          'total_data'  => $total_row
+        );
+        echo json_encode($data);
+     }
+    }
 
     /**
      * Show the form for creating a new resource.
