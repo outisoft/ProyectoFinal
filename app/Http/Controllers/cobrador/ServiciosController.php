@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Servicios;
+use App\User;
 
 class ServiciosController extends Controller
 {
@@ -36,6 +37,7 @@ class ServiciosController extends Controller
      */
     public function create()
     {
+        #$this -> authorize('create', User::class);
         return view('cobrador.servicios.create');
     }
 
@@ -54,7 +56,6 @@ class ServiciosController extends Controller
         'MontoMora'=>'required',
         'descripcion' => 'required',
       ]);
-
         $activo = '1';
         $user = auth()->user();
         $servicios = new Servicios();
@@ -63,6 +64,25 @@ class ServiciosController extends Controller
         $servicios->precio = request('precio');
         $servicios->MontoMora= request('MontoMora');
         $servicios->descripcion = request('descripcion');
+
+        $ruta = public_path() . '/image';
+
+        $imagen1 = $request->file('imagen1');
+        $fileName = uniqid() . $imagen1->getClientOriginalName();
+        $imagen1->move($ruta, $fileName);
+        $servicios->Foto1 =  $imagen1->getClientOriginalName();
+
+
+        $imagen2 = $request->file('imagen2');
+        $fileName = uniqid() . $imagen2->getClientOriginalName();
+        $imagen2->move($ruta, $fileName);
+        $servicios->Foto2 =  $imagen2->getClientOriginalName();
+
+        $imagen3 = $request->file('imagen3');
+        $fileName = uniqid() . $imagen3->getClientOriginalName();
+        $imagen3->move($ruta, $fileName);
+        $servicios->Foto3 =  $imagen3->getClientOriginalName();
+
         $servicios->activo = $activo;
         $servicios->cobrador_id = $user->id;
 
@@ -90,8 +110,16 @@ class ServiciosController extends Controller
      */
     public function edit(Servicios $servicio)
     {
+      #dd($servicio->cobrador_id);
+      $#user = Servicios::find($servicio->cobrador_id);
+
+
       //obtener informacion del servicio
       $servicio = Servicios::find($servicio->id);
+
+      //autorizacion
+      $this->authorize('edit', $servicio->cobrador_id);
+
 
       // regresa una vista con la informacion necesaria
       return view('cobrador.servicios.edit', ['servicio' => $servicio]);
@@ -106,11 +134,16 @@ class ServiciosController extends Controller
      */
     public function update(Request $request, Servicios $servicio)
     {
+
+        $this -> authorize('create', User::class);
       //validar
       $data =request()->validate([
         'nombre' => 'required',
         'precio' => 'required',
         'descripcion' => 'required',
+        'Foto1' =>  'required|image|max:2048',
+        'Foto2' =>  'required|image|max:2048',
+        'Foto3' =>  'required|image|max:2048',
       ]);
 
         $activo = '1';

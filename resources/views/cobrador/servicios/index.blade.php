@@ -58,6 +58,11 @@
         <a href="/servicios/{{ $servicios['id'] }}/edit"><img src="{{ asset('iconos/Edit.ico') }}" width="30" height="30"></a>
         <a href="#"  data-toggle="modal" data-target="#deleteModal" data-postid="{{$servicios['id']}}"><img src="{{ asset('iconos/Cancel.ico') }}" width="30" height="30"></a>
       </div>
+      <div class="card-body">
+        <img src="image/{{ $servicios->Foto1 }}" width="100" class="img-thumbnail"/>
+        <img src="image/{{ $servicios->Foto2 }}" width="100" class="img-thumbnail"/>
+        <img src="image/{{ $servicios->Foto3 }}" width="100" class="img-thumbnail"/>
+      </div>
     </div>
   </div>
   @endforeach

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class CobradorController extends Controller
 {
@@ -14,7 +15,7 @@ class CobradorController extends Controller
     {
       return view('cobrador.cobrador');
     }
-    
+
     /**
      * Create a new controller instance.
      *

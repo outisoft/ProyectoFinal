@@ -53,6 +53,11 @@
         <div class="card-body">
           {!! $servicios['descripcion'] !!}
         </div>
+        <div class="card-body">
+          <img src="image/{{ $servicios->Foto1 }}" width="100" class="img-thumbnail"/>
+          <img src="image/{{ $servicios->Foto2 }}" width="100" class="img-thumbnail"/>
+          <img src="image/{{ $servicios['Foto3']}}" width="100" class="img-thumbnail"/>
+        </div>
       </div>
     </div>
     @endforeach

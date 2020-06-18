@@ -38,6 +38,24 @@
       <textarea name="descripcion" id="descripcion">{{ $servicio->descripcion }}</textarea>
     </div>
 
+    <div class="form-group">
+      <label for="imagen1">Primera imagen:</label>
+      <input name="imagen1" type="file">{{ $servicio->Foto1 }}</input>
+        <img src="image/{{ $servicio->Foto1 }}" width="100" class="img-thumbnail"/>
+    </div>
+
+    <div class="form-group">
+      <label for="imagen2">Segunda imagen:</label>
+      <input name="imagen2" type="file">{{ $servicio->Foto2 }}</input>
+        <img src="image/{{ $servicio->Foto2 }}" width="100" class="img-thumbnail"/>
+    </div>
+
+    <div class="form-group">
+      <label for="imagen3">Tercera imagen:</label>
+      <input name="imagen3" type="file">{{ $servicio->Foto3 }}</input>
+        <img src="image/{{ $servicio->Foto3 }}" width="100" class="img-thumbnail"/>
+    </div>
+
     <div class="form-group pt-2">
         <input class="btn btn-primary" type="submit" value="Actualizar">
     </div>

@@ -86,5 +86,21 @@ class DatabaseSeeder extends Seeder
           'activo' => 1,
           'cobrador_id' => 1,
       ]);
+      DB::table('servicios')->insert([
+          'nombre' => 'Premium',
+          'descripcion' => 'Servicio premium',
+          'precio' => 700,
+          'MontoMora' => 80,
+          'activo' => 1,
+          'cobrador_id' => 1,
+      ]);
+      DB::table('servicios')->insert([
+          'nombre' => 'Platino',
+          'descripcion' => 'Servicio platino',
+          'precio' => 100,
+          'MontoMora' => 100,
+          'activo' => 1,
+          'cobrador_id' => 1,
+      ]);
     }
 }
