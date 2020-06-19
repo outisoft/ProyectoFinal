@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\suscriptor;
 use App\servicio;
+use App\Cobrador;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,7 @@ class SuscriptorController extends Controller
      */
     public function index()
     {
+      $this -> authorize('viewAny', Cobrador::class);
       $servicio = DB::table('servicios_suscriptor')
       ->get();
       $suscriptor = DB::table('users')

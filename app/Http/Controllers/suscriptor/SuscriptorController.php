@@ -17,11 +17,13 @@ class SuscriptorController extends Controller
      */
     public function index()
     {
-      $suscriptor = DB::table('users')
-      ->where('rol', 'suscriptor')
-      ->get();
+        $this -> authorize('viewAny', Suscriptor::class);
 
-      return view('suscriptor.suscriptor', ['suscriptor'=>$suscriptor]);
+        $suscriptor = DB::table('users')
+        ->where('rol', 'suscriptor')
+        ->get();
+
+        return view('suscriptor.suscriptor', ['suscriptor'=>$suscriptor]);
     }
 
     /**

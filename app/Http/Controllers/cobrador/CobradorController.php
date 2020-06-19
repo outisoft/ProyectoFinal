@@ -14,7 +14,8 @@ class CobradorController extends Controller
 {
     function cobrador()
     {
-      return view('cobrador.cobrador');
+        $this -> authorize('viewAny', Cobrador::class);
+        return view('cobrador.cobrador');
     }
 
     /**
@@ -22,11 +23,7 @@ class CobradorController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth'); //sin este middleware el controlador se ejecutaria
-        // aún cuando no exista sesion (si no ahy alguien activo)
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,6 +31,9 @@ class CobradorController extends Controller
      */
     public function index()
     {
+        //dd($this);
+        $this -> authorize('viewAny', Cobrador::class);
+        #$this->authorize('viewAny','cobrador.cobrador');
         return view('cobrador.cobrador');
     }
 

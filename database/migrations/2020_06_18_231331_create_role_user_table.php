@@ -15,9 +15,32 @@ class CreateRoleUserTable extends Migration
     {
         Schema::create('role_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('role_id')->refereences('id')->on('role')->onDelete('cascade');
-            $table->foreignId('user_id')->refereences('id')->on('user')->onDelete('cascade');
-            $table->timestamps();
+            $table->unsignedBigInteger('role_id')->unsigned();
+            $table->unsignedBigInteger('user_id')->unsigned();
+
+            $table->foreign('role_id')
+              ->references('id')->on('roles')
+              ->onDelete('cascade');
+
+            $table->foreign('user_id')
+              ->references('id')->on('users')
+              ->onDelete('cascade');
+
+          #  $table->unsignedBigInteger('role_id')->unsigned();
+          #  $table->unsignedBigInteger('user_id')->unsigned();
+
+          #  $table->index(["role_id"], 'fk_role_users_role1_idx');
+
+          #  $table->index(["user_id"], 'fk_role_users_users1_idx');
+
+          #  $table->foreign('role_id', 'fk_role_users_role1_idx')
+          #      ->references('id')->on('roles')
+          #      ->onDelete('cascade');
+
+          #  $table->foreign('user_id', 'fk_role_users_users1_idx')
+          #      ->references('id')->on('users')
+          #      ->onDelete('cascade');
+           $table->timestamps();
         });
     }
 

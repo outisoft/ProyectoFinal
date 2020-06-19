@@ -2,15 +2,16 @@
 
 namespace App\Policies;
 
+use App\Cobrador;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class CobradorPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can view any cobradors.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -29,72 +30,72 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the cobrador.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Cobrador  $cobrador
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function view(User $user, Cobrador $cobrador)
     {
         //
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create cobradors.
      *
      * @param  \App\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-      #return $user->rol = cobrador;
+        //
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the cobrador.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Cobrador  $cobrador
      * @return mixed
      */
-    public function update(User $user, User $model)
-    {
-
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
-     */
-    public function delete(User $user, User $model)
+    public function update(User $user, Cobrador $cobrador)
     {
         //
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can delete the cobrador.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Cobrador  $cobrador
      * @return mixed
      */
-    public function restore(User $user, User $model)
+    public function delete(User $user, Cobrador $cobrador)
     {
         //
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can restore the cobrador.
      *
      * @param  \App\User  $user
-     * @param  \App\User  $model
+     * @param  \App\Cobrador  $cobrador
      * @return mixed
      */
-    public function forceDelete(User $user, User $model)
+    public function restore(User $user, Cobrador $cobrador)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can permanently delete the cobrador.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Cobrador  $cobrador
+     * @return mixed
+     */
+    public function forceDelete(User $user, Cobrador $cobrador)
     {
         //
     }

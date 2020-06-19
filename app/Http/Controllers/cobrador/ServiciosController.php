@@ -24,7 +24,8 @@ class ServiciosController extends Controller
      */
     public function index()
     {
-      $servicio = Servicios::orderBy('id', 'desc')
+        $this -> authorize('viewAny', Servicios::class);
+        $servicio = Servicios::orderBy('id', 'desc')
                   ->get();
 
         return view('cobrador.servicios.index', ['servicio' => $servicio]);
@@ -37,8 +38,11 @@ class ServiciosController extends Controller
      */
     public function create()
     {
-        #$this -> authorize('create', User::class);
+        $this -> authorize('create', Servicios::class);
+
         return view('cobrador.servicios.create');
+
+
     }
 
     /**
@@ -108,18 +112,22 @@ class ServiciosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     ///codigos diferentes
+     ////dd($user->rol);
+     #$user = Servicios::find($servicio->cobrador_id);
+
+
+     //obtener usuario actual
+     //$user = auth()->user();
+
+     //obtener informacion del servicio
+
     public function edit(Servicios $servicio)
     {
-      #dd($servicio->cobrador_id);
-      $#user = Servicios::find($servicio->cobrador_id);
-
-
-      //obtener informacion del servicio
       $servicio = Servicios::find($servicio->id);
 
-      //autorizacion
-      $this->authorize('edit', $servicio->cobrador_id);
-
+      //solicitar autorizacion
+      $this->authorize('edit', $servicio);
 
       // regresa una vista con la informacion necesaria
       return view('cobrador.servicios.edit', ['servicio' => $servicio]);
@@ -135,15 +143,13 @@ class ServiciosController extends Controller
     public function update(Request $request, Servicios $servicio)
     {
 
-        $this -> authorize('create', User::class);
+        //$this -> authorize('create', User::class);
       //validar
       $data =request()->validate([
         'nombre' => 'required',
         'precio' => 'required',
+        'MontoMora'=>'required',
         'descripcion' => 'required',
-        'Foto1' =>  'required|image|max:2048',
-        'Foto2' =>  'required|image|max:2048',
-        'Foto3' =>  'required|image|max:2048',
       ]);
 
         $activo = '1';
@@ -152,6 +158,25 @@ class ServiciosController extends Controller
         $servicios->nombre = request('nombre');
         $servicios->precio = request('precio');
         $servicios->descripcion = request('descripcion');
+
+        $ruta = public_path() . '/image';
+
+        $imagen1 = $request->file('imagen1');
+        $fileName = uniqid() . $imagen1->getClientOriginalName();
+        $imagen1->move($ruta, $fileName);
+        $servicios->Foto1 =  $imagen1->getClientOriginalName();
+
+
+        $imagen2 = $request->file('imagen2');
+        $fileName = uniqid() . $imagen2->getClientOriginalName();
+        $imagen2->move($ruta, $fileName);
+        $servicios->Foto2 =  $imagen2->getClientOriginalName();
+
+        $imagen3 = $request->file('imagen3');
+        $fileName = uniqid() . $imagen3->getClientOriginalName();
+        $imagen3->move($ruta, $fileName);
+        $servicios->Foto3 =  $imagen3->getClientOriginalName();
+
         $servicios->activo = $activo;
 
         $servicios->save();
@@ -167,8 +192,11 @@ class ServiciosController extends Controller
      */
     public function destroy($id)
     {
+      //$this->authorize('delete', $id);
+
       try {
             $servicios= Servicios::find($id);
+            $this->authorize('delete', $servicios);
             if ($servicios != null){
                 $servicios->delete();
                 return redirect('/servicios')->with('success','El servicio ha sido borrado');
