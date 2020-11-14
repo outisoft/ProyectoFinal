@@ -41,8 +41,6 @@ class ServiciosController extends Controller
         $this -> authorize('create', Servicios::class);
 
         return view('cobrador.servicios.create');
-
-
     }
 
     /**

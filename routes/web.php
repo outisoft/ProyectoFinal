@@ -34,6 +34,7 @@ Route::resource('/suscriptor', 'suscriptor\SuscriptorController');
 Route::resource('/historial', 'suscriptor\HistorialController');
 Route::resource('/verservicios', 'suscriptor\ServiciosController');
 Route::resource('/Servicio_Suscriptor', 'suscriptor\Servicio_SuscriptorController');
+Route::resource('/cuenta', 'suscriptor\CuentaController');
 
 
 //-----------[--Ritas de errores--]----------------------------------------------

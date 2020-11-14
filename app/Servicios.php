@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Servicios extends Model
 {
   use SoftDeletes;
-  
+
+    protected $table = 'servicios';
+    protected $fillable = ['id','nombre', 'descripcion', 'precio', 'MontoMora', 'Foto1', 'Foto2', 'Foto3', 'cobrador_id'];
+
     public function user()
     {
       return $this-belongTo('App\User', 'cobrador_id');

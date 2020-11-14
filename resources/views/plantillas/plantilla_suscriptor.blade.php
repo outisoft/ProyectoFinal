@@ -60,7 +60,7 @@
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
               <li class="nav-item px-2 mt-2 mb-1 text-muted   text-gray-100">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/cuenta">
                   <span data-feather="file"></span>
                   <p style="color:#text-gray-400"><img src="{{ asset('iconos/Wallet_64.png') }}" width="30" height="30">Estado de Cuenta</p>
                 </a>
